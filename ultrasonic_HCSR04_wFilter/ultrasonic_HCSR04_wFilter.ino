@@ -31,7 +31,7 @@ int modE;
 
 void setup() {
   //Serial Port begin
-  Serial.begin (115200);
+  Serial.begin (9600);
   //Define inputs and outputs
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
