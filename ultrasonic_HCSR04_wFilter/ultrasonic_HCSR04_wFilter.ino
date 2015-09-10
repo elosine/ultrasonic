@@ -23,22 +23,22 @@ int trigPin = 11;    //Trig - green Jumper
 int echoPin = 12;    //Echo - yellow Jumper
 long duration, cm;
 
-int arraysize = 15; //quantity of values to find the median (sample size). Needs to be an odd number
+int arraysize = 7; //quantity of values to find the median (sample size). Needs to be an odd number
 
 //declare an array to store the samples. not necessary to zero the array values here, it just makes the code clearer
-int rangevalue[15];
+int rangevalue[7];
 int modE;
 
 void setup() {
   //Serial Port begin
-  Serial.begin (9600);
+  Serial.begin (19200);
   //Define inputs and outputs
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 }
 
 void loop() {
-  
+
   for (int i = 0; i < arraysize; i++) {
     // The sensor is triggered by a HIGH pulse of 10 or more microseconds.
     // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
@@ -60,20 +60,13 @@ void loop() {
 
   isort(rangevalue, arraysize);
   modE = mode(rangevalue, arraysize);
-  if(modE<65){ // To eliminate outliers, can adjust this number to a greater range
-  Serial.print("Us1:");
-  Serial.print(modE); //the mode filtered value
-  Serial.print(";");
+  if (modE < 65) { // To eliminate outliers, can adjust this number to a greater range
+    Serial.print("us1:");
+    Serial.print(modE); //the mode filtered value
+   // delay(10);
   }
-
-  
-  
-  Serial.println();
-
-  delay(15);
+  delay(20);
 }
-
-
 
 
 
